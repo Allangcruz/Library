@@ -16,8 +16,8 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->timestamp('reservation_date');
-            $table->timestamp('due_date');
+            $table->timestamp('reservation_date')->nullable();
+            $table->timestamp('due_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
