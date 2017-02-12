@@ -14,7 +14,13 @@ class CreateLoansTable extends Migration
     public function up()
     {
         Schema::create('loans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->timestamp('loan_date');
+            $table->timestamp('devolution_date');
+            $table->timestamp('devolution_real_date');
+            $table->decimal('mulct', 10, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

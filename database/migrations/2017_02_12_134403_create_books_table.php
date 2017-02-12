@@ -14,9 +14,19 @@ class CreateBooksTable extends Migration
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
+            $table->integer('publishing_house_id')->unsigned();
+            $table->integer('section_id')->unsigned();
+            $table->string('title');
+            $table->string('subtitle');
+            $table->text('observation');
+            $table->smallInteger('nu_exemplary');
+            $table->smallInteger('nu_edition');
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE books ADD year YEAR(4);');
     }
 
     /**

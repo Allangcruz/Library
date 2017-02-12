@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePermissionsTable extends Migration
+class CreateBooksAuthorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('books_authors', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name')->unique();
-            $table->string('display_name')->nullable();
-            $table->string('description')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
+            $table->integer('book_id')->unsigned();
+            $table->integer('author_id')->unsigned();
+            $table->integer('author_main_id')->unsigned()->nullable();
         });
     }
 
@@ -30,6 +28,6 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('books_authors');
     }
 }
